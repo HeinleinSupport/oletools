@@ -1112,7 +1112,7 @@ class OleFileIO:
 
     def __del__(self):
         """Destructor, ensures all file handles are closed that we opened."""
-        self._close(warn=True)
+        self._close(warn=False)
         # super(OleFileIO, self).__del__()  # there's no super-class destructor
 
 
