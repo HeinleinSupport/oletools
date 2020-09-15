@@ -67,7 +67,8 @@ _parent_dir = os.path.normpath(os.path.join(_thismodule_dir, '..'))
 if not _parent_dir in sys.path:
     sys.path.insert(0, _parent_dir)
 
-import olefile
+from oletools import olefile
+#from oletools import olefile
 
 
 # TODO: this is a temporary fix until all logging features are unified in oletools

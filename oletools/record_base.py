@@ -66,7 +66,7 @@ import os.path
 from io import SEEK_CUR
 import logging
 
-import olefile
+from oletools import olefile
 
 # little hack to allow absolute imports even if oletools is not installed.
 PARENT_DIR = os.path.normpath(os.path.dirname(os.path.dirname(

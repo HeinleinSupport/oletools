@@ -126,7 +126,7 @@ if not _parent_dir in sys.path:
 from oletools.thirdparty.xglob import xglob
 from oletools.thirdparty.tablestream import tablestream
 from oletools import oleobj
-import olefile
+from oletools import olefile
 from oletools.common import clsid
 
 # === LOGGING =================================================================

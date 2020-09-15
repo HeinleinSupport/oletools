@@ -64,7 +64,7 @@ __version__ = '0.54'
 
 import sys, os, optparse
 
-import olefile
+from oletools import olefile
 import colorclass
 
 # On Windows, colorclass needs to be enabled:

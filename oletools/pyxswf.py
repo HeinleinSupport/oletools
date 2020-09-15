@@ -79,7 +79,7 @@ import optparse, sys, os
 from . import rtfobj
 from io import BytesIO
 from .thirdparty.xxxswf import xxxswf
-import olefile
+from oletools import olefile
 
 
 #=== MAIN =================================================================

@@ -52,7 +52,7 @@ import sys
 import io
 from zipfile import is_zipfile
 
-import olefile
+from oletools import olefile
 
 # IMPORTANT: it should be possible to run oletools directly as scripts
 # in any directory without installing them with pip or setup.py.

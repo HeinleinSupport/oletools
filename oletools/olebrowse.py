@@ -70,7 +70,7 @@ if not _parent_dir in sys.path:
     sys.path.insert(0, _parent_dir)
 
 import easygui
-import olefile
+from oletools import olefile
 from oletools import ezhexviewer
 
 ABOUT = '~ About olebrowse'

@@ -55,7 +55,7 @@ import sys
 import re
 import csv
 
-import olefile
+from oletools import olefile
 
 # IMPORTANT: it should be possible to run oletools directly as scripts
 # in any directory without installing them with pip or setup.py.

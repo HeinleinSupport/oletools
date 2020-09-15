@@ -83,7 +83,7 @@ __version__ = '0.54'
 import argparse, sys, re, zlib, struct, os
 from os.path import dirname, abspath
 
-import olefile
+from oletools import olefile
 
 # IMPORTANT: it should be possible to run oletools directly as scripts
 # in any directory without installing them with pip or setup.py.
