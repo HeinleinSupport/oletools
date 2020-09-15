@@ -1865,22 +1865,25 @@ class OleFileIO:
         :param storages: bool, include storages if True (False by default) - new in v0.26
             (note: the root storage is never included)
         """
-        prefix = prefix + [node.name]
-        for entry in node.kids:
-            if entry.entry_type == STGTY_STORAGE:
-                # this is a storage
-                if storages:
-                    # add it to the list
-                    files.append(prefix[1:] + [entry.name])
-                # check its kids
-                self._list(files, prefix, entry, streams, storages)
-            elif entry.entry_type == STGTY_STREAM:
-                # this is a stream
-                if streams:
-                    # add it to the list
-                    files.append(prefix[1:] + [entry.name])
-            else:
-                self._raise_defect(DEFECT_INCORRECT, 'The directory tree contains an entry which is not a stream nor a storage.')
+        if hasattr(node, 'name'):
+            prefix = prefix + [node.name]
+
+        if hasattr(node, 'kids'):
+            for entry in node.kids:
+                if entry.entry_type == STGTY_STORAGE:
+                    # this is a storage
+                    if storages:
+                        # add it to the list
+                        files.append(prefix[1:] + [entry.name])
+                    # check its kids
+                    self._list(files, prefix, entry, streams, storages)
+                elif entry.entry_type == STGTY_STREAM:
+                    # this is a stream
+                    if streams:
+                        # add it to the list
+                        files.append(prefix[1:] + [entry.name])
+                else:
+                    self._raise_defect(DEFECT_INCORRECT, 'The directory tree contains an entry which is not a stream nor a storage.')
 
     def listdir(self, streams=True, storages=False):
         """
