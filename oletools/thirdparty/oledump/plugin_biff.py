@@ -73,9 +73,9 @@ QUOTE = '"'
 def P23Decode(value):
     if sys.version_info[0] > 2:
         try:
-            return value.decode('utf-8')
+            return value.decode('utf-8', errors='replace')
         except UnicodeDecodeError as u:
-            return value.decode('windows-1252')
+            return value.decode('windows-1252', errors='replace')
     else:
         return value
 
