@@ -640,6 +640,8 @@ AUTOEXEC_KEYWORDS = {
         #Worksheet_Calculate to Autoexec: see http://www.certego.net/en/news/advanced-vba-macros/
     'May run when an Excel WorkSheet is opened':
         ('Worksheet_Calculate',),
+    'May run when Excel WorkSheet selection is changed':
+        ('Worksheet_SelectionChange',),
 }
 
 # Keywords to detect auto-executable macros
