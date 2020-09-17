@@ -1595,13 +1595,13 @@ class VBA_Module(object):
                 section_id = None
             if section_id != None:
                 log.warning('unknown or invalid module section id {0:04X}'.format(section_id))
-        
+
             log.debug("Module Name = {0}".format(self.name_str))
             # log.debug("Module Name Unicode = {0}".format(self._name_unicode))
             log.debug("Stream Name = {0}".format(self.streamname_str))
             # log.debug("Stream Name Unicode = {0}".format(self._streamname_unicode))
             log.debug("TextOffset = {0}".format(self.textoffset))
-        
+
             code_data = None
             # let's try the different names we have, just in case some are missing:
             try_names = (self.streamname, self._streamname_unicode, self.name, self._name_unicode)
@@ -1617,7 +1617,7 @@ class VBA_Module(object):
                     except IOError as ioe:
                         log.debug('failed to open stream VBA/%r (%r), try other name'
                                   % (stream_name, ioe))
-        
+
             if code_data is None:
                 log.info("Could not open stream %d of %d ('VBA/' + one of %r)!"
                          % (module_index, project.modules_count,
@@ -1627,7 +1627,7 @@ class VBA_Module(object):
                     return  # ... continue with next submodule
                 else:
                     raise SubstreamOpenError('[BASE]', 'VBA/' + self.name)
-        
+
             log.debug("length of code_data = {0}".format(len(code_data)))
             log.debug("offset of code_data = {0}".format(self.textoffset))
             code_data = code_data[self.textoffset:]
@@ -2707,7 +2707,7 @@ class VBA_Parser(object):
         self.vba_forms = None
         self.contains_macros = None # will be set to True or False by detect_macros
         self.vba_code_all_modules = None # to store the source code of all modules
-        # list of tuples for each module: (subfilename, stream_path, vba_filename, vba_code)
+        # list of tuples for each module: (subfilename, stream_path, vba_filename, vba_code, vba_encoding, vba_encoding_confidence)
         self.modules = None
         # Analysis results: list of tuples (type, keyword, description) - See VBA_Scanner
         self.analysis_results = None
@@ -3409,7 +3409,7 @@ class VBA_Parser(object):
                     vba_code = ''
                     for line in self.xlm_macros:
                         vba_code += "' " + line + '\n'
-                    yield ('xlm_macro', 'xlm_macro', 'xlm_macro.txt', vba_code)
+                    yield ('xlm_macro', 'xlm_macro', 'xlm_macro.txt', vba_code, False, False)
             else:
                 # OpenXML/PPT: recursively yield results from each OLE subfile:
                 for ole_subfile in self.ole_subfiles:
@@ -3429,7 +3429,7 @@ class VBA_Parser(object):
                                          dir_path, self.relaxed):
                         # store direntry ids in a set:
                         vba_stream_ids.add(self.ole_file._find(stream_path))
-                        yield (self.filename, stream_path, vba_filename, vba_code)
+                        yield (self.filename, stream_path, vba_filename, vba_code, False, False)
                 except Exception as e:
                     log.exception('Error in _extract_vba')
             # Also look for VBA code in any stream including orphans
@@ -3474,7 +3474,7 @@ class VBA_Parser(object):
                 vba_code = ''
                 for line in self.xlm_macros:
                     vba_code += "' " + line + '\n'
-                yield ('xlm_macro', 'xlm_macro', 'xlm_macro.txt', vba_code)
+                yield ('xlm_macro', 'xlm_macro', 'xlm_macro.txt', vba_code, False, False)
             # Analyse the VBA P-code to detect VBA stomping:
             # If stomping is detected, add a fake VBA module with the P-code as source comments
             # so that VBA_Scanner can find keywords and IOCs in it
@@ -3482,7 +3482,7 @@ class VBA_Parser(object):
                 vba_code = ''
                 for line in self.pcodedmp_output.splitlines():
                     vba_code += "' " + line + '\n'
-                yield ('VBA P-code', 'VBA P-code', 'VBA_P-code.txt', vba_code)
+                yield ('VBA P-code', 'VBA P-code', 'VBA_P-code.txt', vba_code, False, False)
 
 
     def extract_all_macros(self):
@@ -3495,8 +3495,8 @@ class VBA_Parser(object):
         """
         if self.modules is None:
             self.modules = []
-            for (subfilename, stream_path, vba_filename, vba_code) in self.extract_macros():
-                self.modules.append((subfilename, stream_path, vba_filename, vba_code))
+            for (subfilename, stream_path, vba_filename, vba_code, vba_encoding, vba_encoding_confidence) in self.extract_macros():
+                self.modules.append((subfilename, stream_path, vba_filename, vba_code, vba_encoding, vba_encoding_confidence))
         self.nb_macros = len(self.modules)
         return self.modules
 
@@ -4026,7 +4026,7 @@ class VBA_Parser_CLI(VBA_Parser):
                 # run analysis before displaying VBA code, in order to colorize found keywords
                 self.run_analysis(show_decoded_strings=show_decoded_strings, deobfuscate=deobfuscate)
                 #print 'Contains VBA Macros:'
-                for (subfilename, stream_path, vba_filename, vba_code) in self.extract_all_macros():
+                for (subfilename, stream_path, vba_filename, vba_code, vba_encoding, vba_encoding_confidence) in self.extract_all_macros():
                     if hide_attributes:
                         # hide attribute lines:
                         vba_code_filtered = filter_vba(vba_code)
@@ -4158,7 +4158,7 @@ class VBA_Parser_CLI(VBA_Parser):
             result['type'] = self.type
             macros = []
             if self.detect_vba_macros():
-                for (subfilename, stream_path, vba_filename, vba_code) in self.extract_all_macros():
+                for (subfilename, stream_path, vba_filename, vba_code, vba_encoding, vba_encoding_confidence) in self.extract_all_macros():
                     curr_macro = {}
                     if hide_attributes:
                         # hide attribute lines:
@@ -4169,6 +4169,9 @@ class VBA_Parser_CLI(VBA_Parser):
                     curr_macro['vba_filename'] = vba_filename
                     curr_macro['subfilename'] = subfilename
                     curr_macro['ole_stream'] = stream_path
+                    curr_macro['vba_encoding'] = vba_encoding
+                    curr_macro['vba_encoding_confidence'] = vba_encoding_confidence
+
                     if display_code:
                         curr_macro['code'] = vba_code_filtered.strip()
                     else:
