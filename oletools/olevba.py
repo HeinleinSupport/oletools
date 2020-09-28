@@ -3403,7 +3403,7 @@ class VBA_Parser(object):
             # This may be either an OpenXML/PPT or a text file:
             if self.type == TYPE_TEXT:
                 # This is a text file, yield the full code:
-                yield (self.filename, '', self.filename, self.vba_code_all_modules)
+                yield (self.filename, '', self.filename, self.vba_code_all_modules, False, False)
             elif self.type == TYPE_SLK:
                 if self.xlm_macros:
                     vba_code = ''
@@ -4169,8 +4169,11 @@ class VBA_Parser_CLI(VBA_Parser):
                     curr_macro['vba_filename'] = vba_filename
                     curr_macro['subfilename'] = subfilename
                     curr_macro['ole_stream'] = stream_path
-                    curr_macro['vba_encoding'] = vba_encoding
-                    curr_macro['vba_encoding_confidence'] = vba_encoding_confidence
+
+                    if vba_encoding:
+                        curr_macro['vba_encoding'] = vba_encoding
+                    if vba_encoding_confidence:
+                        curr_macro['vba_encoding_confidence'] = vba_encoding_confidence
 
                     if display_code:
                         curr_macro['code'] = vba_code_filtered.strip()
