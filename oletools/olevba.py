@@ -3511,7 +3511,7 @@ class VBA_Parser(object):
         :return: str
         """
         vba_code_all_modules = ''
-        for (_, _, _, vba_code) in self.extract_all_macros():
+        for (_, _, _, vba_code, _, _) in self.extract_all_macros():
             if not isinstance(vba_code, str):
                 log.error('VBA code returned by extract_all_macros is not a string')
             else:
