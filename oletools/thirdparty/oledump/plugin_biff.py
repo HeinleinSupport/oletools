@@ -1178,7 +1178,7 @@ def ParseExpression(expression, definesNames, sheetNames, cellrefformat):
             elif ptgid == 0x0E: # ptgNE
                 StackBinary(stack, '<>')
             elif ptgid == 0x15: # ptgParen
-                if len(stack) > 0
+                if len(stack) > 0:
                     operand1 = stack.pop()
                     stack.append('(' + operand1 + ')')
             elif ptgid == 0x17: # ptgStr https://docs.microsoft.com/en-us/openspecs/office_file_formats/ms-xls/87c2a057-705c-4473-a168-6d5fac4a9eba
