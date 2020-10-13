@@ -59,7 +59,7 @@ http://www.decalage.info/python/oletools
 # 2016-11-01       PL: - replaced StringIO by BytesIO for Python 3
 # 2018-09-11 v0.54 PL: - olefile is now a dependency
 
-__version__ = '0.54'
+__version__ = '0.54-heinlein-stable'
 
 #------------------------------------------------------------------------------
 # TODO:

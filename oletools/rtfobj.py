@@ -93,7 +93,7 @@ http://www.decalage.info/python/oletools
 # 2019-12-16 v0.55.2 PL: - \rtf is not a destination control word (issue #522)
 # 2019-12-17         PL: - fixed process_file to detect Equation class (issue #525)
 
-__version__ = '0.55.2'
+__version__ = '0.55.2-heinlein-stable'
 
 # ------------------------------------------------------------------------------
 # TODO:

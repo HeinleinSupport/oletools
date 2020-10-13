@@ -50,7 +50,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 2017-04-26       PL: - fixed absolute imports (issue #141)
 # 2018-09-15 v0.54 PL: - easygui is now a dependency
 
-__version__ = '0.54'
+__version__ = '0.54-heinlein-stable'
 
 #-----------------------------------------------------------------------------
 # TODO:

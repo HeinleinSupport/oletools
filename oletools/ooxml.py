@@ -44,7 +44,7 @@ http://www.decalage.info/python/oletools
 # CHANGELOG:
 # 2018-12-06       CH: - ensure stdout can handle unicode
 
-__version__ = '0.54.2'
+__version__ = '0.54.2-heinlein-stable'
 
 # -- TODO ---------------------------------------------------------------------
 

@@ -234,7 +234,7 @@ from __future__ import print_function
 # 2020-09-28       PL: - added VBA_Parser.get_vba_code_all_modules (partial fix
 #                        for issue #619)
 
-__version__ = '0.56.1dev1'
+__version__ = '0.56.1dev1-heinlein-stable'
 
 #------------------------------------------------------------------------------
 # TODO:
@@ -3355,7 +3355,7 @@ class VBA_Parser(object):
                         biff_plugin = cBIFF(name=[excel_stream], stream=data, options='-c -r LN')
                         self.xlm_macros += biff_plugin.Analyze()
                         biff_plugin = cBIFF(name=[excel_stream], stream=data, options='-o FORMULA -r LN')
-                        self.xlm_macros += biff_plugin.Analyze()                        
+                        self.xlm_macros += biff_plugin.Analyze()
                         # we run plugin_biff again, this time to search DCONN objects and get their URLs, if any:
                         # ref: https://inquest.net/blog/2020/03/18/Getting-Sneakier-Hidden-Sheets-Data-Connections-and-XLM-Macros
                         biff_plugin = cBIFF(name=[excel_stream], stream=data, options='-o DCONN -s')

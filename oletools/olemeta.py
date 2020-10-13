@@ -51,7 +51,7 @@ http://www.decalage.info/python/oletools
 # 2017-05-04       PL: - added optparse and xglob (issue #141)
 # 2018-09-11 v0.54 PL: - olefile is now a dependency
 
-__version__ = '0.54'
+__version__ = '0.54-heinlein-stable'
 
 #------------------------------------------------------------------------------
 # TODO:
