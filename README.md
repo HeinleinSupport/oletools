@@ -1,6 +1,6 @@
 heinleinsupport patched oletools repo
 ===============
-warning: **This is NOT the official oletools repository!!**
+:warning: **This is NOT the official oletools repository!!**
 
 Official Oletools Github Repository: [oletools](https://github.com/decalage2/oletools/) is a package of python tools to analyze
 
