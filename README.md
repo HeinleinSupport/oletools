@@ -1,3 +1,15 @@
+heinleinsupport patched oletools repo
+===============
+:warning: **This is NOT the official oletools repository!!**
+
+Official Oletools Github Repository: [oletools](https://github.com/decalage2/oletools/) is a package of python tools to analyze
+
+This repository is forked from https://github.com/decalage2/oletools/ and enriched with some patches to negotiate some issues we had with some macro viruses and using our small oletools-rspamd daemon [olefy](https://github.com/HeinleinSupport/olefy)
+
+Be aware - this version is only tested in CLI mode and works for us. Maybe also for you ;)
+
+:warning: **Also: this is our testing branch**
+
 python-oletools
 ===============
 [![PyPI](https://img.shields.io/pypi/v/oletools.svg)](https://pypi.org/project/oletools/)
@@ -5,18 +17,18 @@ python-oletools
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/decalage2)
 
 [oletools](http://www.decalage.info/python/oletools) is a package of python tools to analyze
-[Microsoft OLE2 files](http://en.wikipedia.org/wiki/Compound_File_Binary_Format) 
-(also called Structured Storage, Compound File Binary Format or Compound Document File Format), 
-such as Microsoft Office documents or Outlook messages, mainly for malware analysis, forensics and debugging. 
-It is based on the [olefile](http://www.decalage.info/olefile) parser. 
+[Microsoft OLE2 files](http://en.wikipedia.org/wiki/Compound_File_Binary_Format)
+(also called Structured Storage, Compound File Binary Format or Compound Document File Format),
+such as Microsoft Office documents or Outlook messages, mainly for malware analysis, forensics and debugging.
+It is based on the [olefile](http://www.decalage.info/olefile) parser.
 See [http://www.decalage.info/python/oletools](http://www.decalage.info/python/oletools) for more info.  
 
-**Quick links:** 
-[Home page](http://www.decalage.info/python/oletools) - 
+**Quick links:**
+[Home page](http://www.decalage.info/python/oletools) -
 [Download/Install](https://github.com/decalage2/oletools/wiki/Install) -
 [Documentation](https://github.com/decalage2/oletools/wiki) -
 [Report Issues/Suggestions/Questions](https://github.com/decalage2/oletools/issues) -
-[Contact the Author](http://decalage.info/contact) - 
+[Contact the Author](http://decalage.info/contact) -
 [Repository](https://github.com/decalage2/oletools) -
 [Updates on Twitter](https://twitter.com/decalage2)
 [Cheatsheet](https://github.com/decalage2/oletools/blob/master/cheatsheet/oletools_cheatsheet.pdf)
@@ -58,7 +70,7 @@ News
         - improved detection of auto execution triggers
     - rtfobj: added URL carver for CVE-2017-0199
     - better handling of unicode for systems with locale that does not support UTF-8, e.g. LANG=C (PR #365)
-    - tests: 
+    - tests:
         - test files can now be encrypted, to avoid antivirus alerts (PR #217, issue #215)
         - tests that trigger antivirus alerts have been temporarily disabled (issue #215)
 
@@ -132,7 +144,7 @@ including
 [Viper](http://viper.li/),
 [ViperMonkey](https://github.com/decalage2/ViperMonkey),
 [YOMI](https://yomi.yoroi.company),
-and probably [VirusTotal](https://www.virustotal.com). 
+and probably [VirusTotal](https://www.virustotal.com).
 And quite a few [other projects on GitHub](https://github.com/search?q=oletools&type=Repositories).
 (Please [contact me]((http://decalage.info/contact)) if you have or know
 a project using oletools)
@@ -168,12 +180,12 @@ a copy is provided in the doc subfolder of the package.
 How to Suggest Improvements, Report Issues or Contribute:
 ---------------------------------------------------------
 
-This is a personal open-source project, developed on my spare time. Any contribution, suggestion, feedback or bug 
+This is a personal open-source project, developed on my spare time. Any contribution, suggestion, feedback or bug
 report is welcome.
 
-To suggest improvements, report a bug or any issue, please use the 
+To suggest improvements, report a bug or any issue, please use the
 [issue reporting page](https://github.com/decalage2/oletools/issues), providing all the
-information and files to reproduce the problem. 
+information and files to reproduce the problem.
 
 You may also [contact the author](http://decalage.info/contact) directly to provide feedback.
 
@@ -183,7 +195,7 @@ to submit enhancements using forks and pull requests.
 License
 -------
 
-This license applies to the python-oletools package, apart from the thirdparty folder which contains third-party files 
+This license applies to the python-oletools package, apart from the thirdparty folder which contains third-party files
 published with their own license.
 
 The python-oletools package is copyright (c) 2012-2020 Philippe Lagadec (http://www.decalage.info)
