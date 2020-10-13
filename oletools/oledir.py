@@ -53,7 +53,7 @@ from __future__ import print_function
 # 2018-08-28 v0.54 PL: - olefile is now a dependency
 # 2018-10-06           - colorclass is now a dependency
 
-__version__ = '0.54'
+__version__ = '0.54-heinlein-testing'
 
 #------------------------------------------------------------------------------
 # TODO:

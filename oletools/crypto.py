@@ -94,7 +94,7 @@ http://www.decalage.info/python/oletools
 # 2019-04-01 v0.54 PL: - fixed bug in is_encrypted_ole
 # 2019-05-23       PL: - added DEFAULT_PASSWORDS list
 
-__version__ = '0.55'
+__version__ = '0.55-heinlein-testing'
 
 import sys
 import struct

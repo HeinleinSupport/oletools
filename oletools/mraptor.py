@@ -62,7 +62,7 @@ http://www.decalage.info/python/oletools
 # 2019-11-06 v0.55 PL: - added SetTimer
 # 2020-04-20 v0.56 PL: - added keywords RUN and CALL for XLM macros (issue #562)
 
-__version__ = '0.56'
+__version__ = '0.56-heinlein-testing'
 
 #------------------------------------------------------------------------------
 # TODO:

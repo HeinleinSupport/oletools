@@ -55,7 +55,7 @@ http://www.decalage.info/python/oletools
 # 2016-09-06 v0.50 PL: - fixed issue #20, is_zipfile on Python 2.6
 # 2017-04-26 v0.51 PL: - fixed absolute imports (issue #141)
 
-__version__ = '0.51'
+__version__ = '0.51-heinlein-testing'
 
 # --- TODO -------------------------------------------------------------------
 
