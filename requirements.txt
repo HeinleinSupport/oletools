@@ -4,3 +4,4 @@ easygui
 colorclass
 msoffcrypto-tool
 pcodedmp>=1.2.5
+chardet
