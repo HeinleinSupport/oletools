@@ -285,6 +285,7 @@ import email  # for MHTML parsing
 import email.feedparser
 import string  # for printable
 import json   # for json output mode (argument --json)
+import chardet
 
 # import lxml or ElementTree for XML parsing:
 try:
@@ -3470,8 +3471,15 @@ class VBA_Parser(object):
                             # the VBA project parsing failed (e.g. issue #593).
                             # So let's convert using cp1252 as a guess
                             # TODO get the actual encoding from the VBA_Project
-                            vba_code_str = bytes2str(vba_code_bytes, encoding='cp1252')
-                            yield (self.filename, d.name, d.name, vba_code_str)
+                            chardet_result = chardet.detect(vba_code_bytes)
+
+                            if chardet_result['confidence'] > 0.6:
+                                charenc = chardet_result['encoding']
+                            else:
+                                charenc = 'cp1252'
+
+                            vba_code_str = bytes2str(vba_code_bytes, charenc)
+                            yield (self.filename, d.name, d.name, vba_code_str, chardet_result['encoding'], chardet_result['confidence'])
                         except Exception as exc:
                             # display the exception with full stack trace for debugging
                             log.debug('Error processing stream %r in file %r (%s)' % (d.name, self.filename, exc))
