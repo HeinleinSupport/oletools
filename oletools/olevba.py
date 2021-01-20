@@ -3093,7 +3093,7 @@ class VBA_Parser(object):
 
         log.info('Check whether OLE file is PPT')
         try:
-            ppt = ppt_parser.PptParser(self.ole_file, fast_fail=True)
+            ppt = ppt_parser.PptParser(self.ole_file, fast_fail=False)
             for vba_data in ppt.iter_vba_data():
                 self.append_subfile(None, vba_data, container='PptParser')
             log.info('File is PPT')
