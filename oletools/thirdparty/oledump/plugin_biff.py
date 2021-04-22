@@ -1327,11 +1327,11 @@ def DecodeRKValue(data):
 def ShortXLUnicodeString(data, isBIFF8):
     cch = P23Ord(data[0])
     if isBIFF8:
-    highbyte = P23Ord(data[1])
-    if highbyte == 0:
-        return P23Decode(data[2:2 + cch])
-    else:
-        return repr(data[2:2 + cch * 2])
+        highbyte = P23Ord(data[1])
+        if highbyte == 0:
+            return P23Decode(data[2:2 + cch])
+        else:
+            return repr(data[2:2 + cch * 2])
     else:
         return P23Decode(data[1:1 + cch])
 
