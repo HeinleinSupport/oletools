@@ -5,6 +5,8 @@ __author__ = 'Didier Stevens'
 __version__ = '0.0.22'
 __date__ = '2021/02/23'
 
+# Slightly modified version by Philippe Lagadec to be imported into olevba
+
 """
 
 Source code put in public domain by Didier Stevens, no Copyright
